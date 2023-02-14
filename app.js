@@ -34,7 +34,7 @@ app.post("/login/", async (request, response) => {
     if (isPasswordValid) {
       //get JWT Token
       const payload = { username: username };
-      const jwtToken = jwt.sign(payload, "vivek_secret_key");
+      const jwtToken = jwt.sign(payload, "sumankey");
       response.send({ jwtToken }); //Scenario 3
     } else {
       response.status(400);
@@ -53,7 +53,7 @@ function authenticationToken(request, response, next) {
     jwtToken = authHeader.split(" ")[1];
   }
   if (jwtToken !== undefined) {
-    jwt.verify(jwtToken, "vivek_secret_key", async (error, payload) => {
+    jwt.verify(jwtToken, "sumankey", async (error, payload) => {
       if (error) {
         response.status(401);
         response.send(`Invalid JWT Token`); // Scenario 1
